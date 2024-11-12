@@ -31,7 +31,7 @@ def cifra_cesar(texto: str, desprazamento: int) -> str:
         ValueError: Se o tipo de datos introducidos non é válido (texto non é unha cadea ou desprazamento non é un enteiro).
     """
     
-    if not isinstance(texto, str) or not isinstance(desprazamento, int):
+    if not type(texto) == str or not type(desprazamento) == int:
         raise ValueError("Introduzca valores válidos")
     
     alfabeto = "abcdefghijklmnopqrstuvwxyz"
@@ -51,7 +51,6 @@ def cifra_cesar(texto: str, desprazamento: int) -> str:
     
     return resultado
 
-# Captura de datos do usuario e manexo de excepcións
 try:
     texto_original = input("Introduce el texto a cifrar: ")
     desprazamento = int(input("Introduce el desprazamento: "))
