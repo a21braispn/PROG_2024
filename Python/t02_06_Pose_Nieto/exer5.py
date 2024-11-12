@@ -11,46 +11,52 @@ Se nun desprazamento rematan as letras, volverase a comezar polo comezo do alfab
 Supoñer que todos os nomes están en minúsculas e están compostos só polas seguintes letras: a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z.
 
 Realiza a implantación deste algoritmo na función cifra_cesar(texto: str, desprazamento: int): str. Recorda que os caracteres diferentes as letras se deben manter. Comproba se o tipo de datos introducidos son válidos, e senón é así lanza unha excepción ValueError.
-
-O propio script debe utilizar ditas función para cifrar un texto introducido polo usuario para mostrar o texto cifrado por pantalla. O usuario tamén indicará por teclado o desprazamento. Ademais recorda capturar a excepción.
-
 """
 
 __author__ = "Brais Pose Nieto"
 
 def cifra_cesar(texto: str, desprazamento: int) -> str:
-    # Verificar que el tipo de datos es correcto
+    """
+    Aplica o cifrado César a un texto dado, desprazando cada letra un número fixo de posicións
+    no alfabeto. Os caracteres que non son letras minúsculas de 'a' a 'z' mantéñense sen cambio.
+    
+    Args:
+        texto (str): O texto a cifrar. Debe estar en minúsculas e conter só letras de 'a' a 'z'.
+        desprazamento (int): O número de posicións para desprazar cada letra no alfabeto.
+    
+    Returns:
+        str: O texto cifrado resultante.
+    
+    Raises:
+        ValueError: Se o tipo de datos introducidos non é válido (texto non é unha cadea ou desprazamento non é un enteiro).
+    """
+    
     if not isinstance(texto, str) or not isinstance(desprazamento, int):
-        raise ValueError("Datos introducidos no válidos: 'texto' debe ser una cadena y 'desprazamento' un entero.")
+        raise ValueError("Introduzca valores válidos")
     
-    alfabeto = 'abcdefghijklmnopqrstuvwxyz'
-    n = len(alfabeto)
-    
-    # Crear un diccionario de mapeo de cada letra con su desplazamiento
-    mapa_cifrado = {}
-    for i in range(n):
-        # Calculamos la letra desplazada
-        letra_original = alfabeto[i]
-        letra_cifrada = alfabeto[(i + desprazamento) % n]
-        mapa_cifrado[letra_original] = letra_cifrada
-    
+    alfabeto = "abcdefghijklmnopqrstuvwxyz"
     resultado = ""
     
     for char in texto:
-        # Si el carácter está en el alfabeto, lo ciframos; si no, lo dejamos igual
-        if char in mapa_cifrado:
-            resultado += mapa_cifrado[char]
+        if char in alfabeto:
+            # Buscar a posición da letra no alfabeto
+            posicion_original = alfabeto.index(char)
+            # Calcula a nova posición
+            nova_posicion = (posicion_original + desprazamento) % 26
+            # Busca a nova letra cifrada e garda en resultado
+            resultado += alfabeto[nova_posicion]
         else:
-            resultado += char  # Mantener caracteres que no están en el alfabeto
+            # Manter os caracteres que non estan no alfabeto (espacios, puntos, etc...)
+            resultado += char
     
     return resultado
 
-# Captura de datos del usuario y manejo de excepciones
+# Captura de datos do usuario e manexo de excepcións
 try:
-    texto_usuario = input("Introduce el texto a cifrar: ")
-    desprazamento_usuario = int(input("Introduce el desprazamento: "))
+    texto_original = input("Introduce el texto a cifrar: ")
+    desprazamento = int(input("Introduce el desprazamento: "))
     
-    texto_cifrado = cifra_cesar(texto_usuario, desprazamento_usuario)
+    texto_cifrado = cifra_cesar(texto_original, desprazamento)
     print("Texto cifrado:", texto_cifrado)
 
 except ValueError as e:
