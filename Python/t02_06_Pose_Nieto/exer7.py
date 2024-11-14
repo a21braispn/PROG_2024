@@ -67,6 +67,6 @@ def comprobar_dni(dni):
     return "Válido"
 
 # Solicita DNI ao usuario
-dni = input("Introduce tu DNI: ")
+dni = input("Introduce o teu DNI: ")
 resultado = comprobar_dni(dni)
 print(resultado)
