@@ -9,7 +9,7 @@ O programa recibirá en orde os seguintes parámetros: tamaño da táboa, númer
 
 __author__ = "Brais Pose Nieto"
 
-def calcular_indice_hash(tam_tabla, num_divisiones, chave):
+def calcular_indice_hash(tam_tabla, num_divisions, chave):
     """
     Calcula o índice hash dunha chave empregando o método de folding.
 
@@ -29,9 +29,9 @@ def calcular_indice_hash(tam_tabla, num_divisiones, chave):
     
     i = 0
     while i < tam_chave:
-        parte = chave[i:i+num_divisiones]
-        suma_partes += int(parte)
-        i += num_divisiones
+        parte = chave[i:i+num_divisions]
+        suma += int(parte)
+        i += num_divisions
     
     # Calcula o índice como resto na división da suma polo tamaño da tabla
     indice = suma % tam_tabla
@@ -40,9 +40,9 @@ def calcular_indice_hash(tam_tabla, num_divisiones, chave):
 
 # Solicita parámetros ao usuario
 tam_tabla = int(input("Introduce o tamaño da tabla: "))
-num_divisiones = int(input("Introduce o número de divisións por folding: "))
+num_divisions = int(input("Introduce o número de divisións por folding: "))
 chave = input("Introduce a chave: ")
 
 # Calcula o índice
-indice = calcular_indice_hash(tam_tabla, num_divisiones, chave)
+indice = calcular_indice_hash(tam_tabla, num_divisions, chave)
 print(f"O índice da chave é: {indice}")
