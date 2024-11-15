@@ -24,19 +24,23 @@ def calcular_indice_hash(tam_tabla, num_divisions, chave):
     Returns:
         int: Índice hash calculado para a chave.
     """
+    # Converte a chave nunha cadea baseada nos seus valores ASCII
+    chave_ascii = ""
+    for char in chave:
+        chave_ascii += str(ord(char))  # Engade o valor ASCII de cada carácter
+
     suma = 0
-    tam_chave = len(chave)
-    
-    # Calcula a suma empregando os valores ASCII dos caracteres
+    tam_chave = len(chave_ascii)
+
+    # Calcula a suma empregando os segmentos de num_divisions díxitos
     i = 0
     while i < tam_chave:
-        # Obtemos unha parte da chave (de num_divisions caracteres)
-        parte = chave[i:i+num_divisions]
-        
-        # Convertimos cada carácter ao seu valor ASCII e calculamos a suma
-        valor_parte = sum(ord(char) for char in parte)
-        suma += valor_parte
-        
+        # Obten unha parte da cadea ASCII (de num_divisions díxitos)
+        parte = chave_ascii[i:i+num_divisions]
+
+        # Convert o segmento a un número enteiro e sumámolo
+        suma += int(parte)
+
         i += num_divisions
 
     # Calcula o índice como o resto da suma dividido polo tamaño da táboa
@@ -52,4 +56,3 @@ chave = input("Introduce a chave: ")
 # Calcula o índice
 indice = calcular_indice_hash(tam_tabla, num_divisions, chave)
 print(f"O índice da chave é: {indice}")
-
