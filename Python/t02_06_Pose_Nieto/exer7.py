@@ -46,15 +46,15 @@ def comprobar_dni(dni):
     """
     # Comproba tamaño do valor introducido
     if not len(dni) == 9:
-        return "Inválido"
+        return False
 
     # Comproba formato usando valores ASCII
-    for i in range(8):
-        if ord(dni[i]) < 48 or ord(dni[i]) > 57:  # ASCII de '0' é 48 e de '9' é 57
-            return "Inválido"
+    for i in dni[:8]:
+        if ord(i) < 48 or ord(i) > 57:  # ASCII de '0' é 48 e de '9' é 57
+            return False
     
     if ord(dni[8]) < 65 or ord(dni[8]) > 90:  # ASCII de 'A' é 65 e de 'Z' é 90
-        return "Inválido"
+        return False
 
     # Comproba letra de control
     numero = int(dni[:8])
@@ -62,11 +62,14 @@ def comprobar_dni(dni):
     letra_correcta = calcular_letra_dni(numero)
 
     if not letra == letra_correcta:
-        return "Inválido"
+        return False
 
-    return "Válido"
+    return True
 
 # Solicita DNI ao usuario
 dni = input("Introduce o teu DNI: ")
 resultado = comprobar_dni(dni)
-print(resultado)
+if resultado == True:
+    print("Válido")
+elif resultado == False:
+    print("Inválido")
