@@ -66,14 +66,17 @@ def modificar_datos(modificar:str, lista:list, nova_nota:float):
         if alumno["nome"] == modificar:
             alumno["nota"] = nova_nota
 
-def ver_aprobados(lista:list):
+def ver_aprobados(lista: list):
     aprobados = []
-    for alumno in lista:
+    for i, alumno in enumerate(lista): 
         if alumno["nota"] >= 5:
-            aprobado = alumno["nome"] + " " + alumno["apelidos"]
+            aprobado = str(i) + ". " + alumno["apelidos"] + ", " + alumno["nome"] + ": " + str(alumno["nota"])
             aprobados.append(aprobado)
     
     return aprobados
+
+def ordenar_alumnos():
+    pass
 
 while True:
     print("a) Ingresar datos alumno")
