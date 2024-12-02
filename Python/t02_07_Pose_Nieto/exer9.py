@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*-
 
@@ -48,7 +47,6 @@ while contador < num_premios:  # Repite ata que se asinen todos os premios
 
 for premio in premiados: # Imprime os numeros por separado
     print(f"Premiados = {premio:04d}")  # Engade ceros á esquerda ata chegar ás 4 cifras
-=======
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -95,4 +93,4 @@ while contador < num_premios:
 for premio in premiados:
     print(f"Premiados = {premio:04d}")
 
->>>>>>> 2337a963088782f3369f4af3dd513f6e4a47f47b
+
