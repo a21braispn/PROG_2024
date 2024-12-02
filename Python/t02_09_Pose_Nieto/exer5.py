@@ -15,7 +15,7 @@ Nese mesmo script proba a función obtendo unha palabra por teclado e mostra por
 __author__ = "Brais Pose Nieto"
 
 def comprobar_datos(palabra: str):
-    if isinstance(palabra, str):
+    if type(palabra) == str:
         return True
     else:
         return False
@@ -24,22 +24,19 @@ def anagrama(palabra1: str, palabra2: str) -> bool:
     if palabra1 == palabra2:
         return True
     
-    if not len(palabra1) == len(palabra2):
-        return False
-
     if len(palabra1) == 0 and len(palabra2) == 0:
-        return True
+        raise ValueError
 
     if palabra1[0] in palabra2:
-        nueva_palabra2 = ""
+        nova_palabra2 = ""
         encontrado = False
         for char in palabra2:
             if char == palabra1[0] and not encontrado:
                 encontrado = True
             else:
-                nueva_palabra2 += char
+                nova_palabra2 += char
 
-        return anagrama(palabra1[1:], nueva_palabra2)
+        return anagrama(palabra1[1:], nova_palabra2)
 
     return False
 
@@ -48,8 +45,8 @@ palabra2 = str(input("Segunda palabra: "))
 
 if comprobar_datos(palabra1) and comprobar_datos(palabra2):
     if anagrama(palabra1, palabra2):
-        print("Anagrama")
+        print("Son anagramas")
     else:
-        print("Non anagrama")
+        print("Non son anagrama")
 else:
-    print("Datos incorrectos. Por favor, introduza cadeas de caracteres válidas.")
+    print("Por favor, introduza caracteres válidos.")
