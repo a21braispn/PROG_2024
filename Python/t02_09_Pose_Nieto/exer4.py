@@ -14,30 +14,41 @@ Nese mesmo script proba a función obtendo unha palabra ou frase por teclado e m
 
 __author__ = "Brais Pose Nieto"
 
-def comprobar_datos(palabra: str):
-    if type(palabra) == str:
-        return True
-    else:
-        return False
-
 def es_palindromo(palabra: str) -> bool:
+    """
+    Verifica recursivamente si una palabra o frase es un palíndromo.
 
+    Parámetros:
+    palabra (str): La palabra o frase a verificar. Debe contener solo letras.
+
+    Retorna:
+    bool: True si la palabra es un palíndromo, False en caso contrario.
+
+    Excepciones:
+    ValueError: Si la entrada no es una cadena de caracteres o contiene caracteres no alfabéticos.
+    """
+    if not type(palabra) == str:
+        raise ValueError
+    
+    palabra = palabra.replace(" ","").lower()
+    
+    for c in palabra:
+        if not ('a' <= c <= 'z'):
+            raise ValueError
     if len(palabra) <= 1:
         return True
-
+    
     if palabra[0] == palabra[-1]:
         return es_palindromo(palabra[1:-1])
     else:
         return False
 
-palabra = str(input("Palabra ou frase: "))
+try:
+    palabra = input("Introduzca unha palabra ou frase: ")
 
-if comprobar_datos(palabra) == True:
     if es_palindromo(palabra) == True:
         print("É un palíndromo")
     else:
         print("Non é un palíndromo")
-else:
-    print("Datos incorrectos. Por favor, introduza unha cadea de caracteres.")
-
-
+except ValueError:
+    print("A palabra solo debe conter letras.")

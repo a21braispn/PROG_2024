@@ -14,27 +14,39 @@ Nese mesmo script proba a función obtendo unha palabra por teclado e mostra por
 
 __author__ = "Brais Pose Nieto"
 
-def comprobar_datos(palabra: str):
-    if type(palabra) == str:
-        return True
-    else:
-        return False
-
 def anagrama(palabra1: str, palabra2: str) -> bool:
-    if palabra1 == palabra2:
-        return True
+    """
+    Verifica recursivamente si una palabra es un anagrama de otra.
+
+    Parámetros:
+    palabra1 (str): La primera palabra a comparar.
+    palabra2 (str): La segunda palabra a comparar.
+
+    Retorna:
+    bool: True si palabra1 es un anagrama de palabra2, False en caso contrario.
+
+    Excepciones:
+    ValueError: Si las entradas no son cadenas de caracteres o están vacías.
+    """
+    if not type(palabra1) and not type(palabra2) == str:
+        raise ValueError
     
     if len(palabra1) == 0 and len(palabra2) == 0:
         raise ValueError
+    
+    if palabra1 == palabra2:
+        return True
 
-    if palabra1[0] in palabra2:
-        nova_palabra2 = ""
-        encontrado = False
-        for char in palabra2:
-            if char == palabra1[0] and not encontrado:
-                encontrado = True
-            else:
-                nova_palabra2 += char
+
+    if len(palabra1) == len(palabra2):
+        if palabra1[0] in palabra2:
+            nova_palabra2 = ""
+            encontrada = False
+            for c in palabra2:
+                if c == palabra1[0] and not encontrada:
+                    encontrada = True
+                else:
+                    nova_palabra2 += c
 
         return anagrama(palabra1[1:], nova_palabra2)
 
@@ -43,10 +55,10 @@ def anagrama(palabra1: str, palabra2: str) -> bool:
 palabra1 = str(input("Primeira palabra: "))
 palabra2 = str(input("Segunda palabra: "))
 
-if comprobar_datos(palabra1) and comprobar_datos(palabra2):
-    if anagrama(palabra1, palabra2):
+try:
+    if anagrama(palabra1, palabra2) == True:
         print("Son anagramas")
     else:
         print("Non son anagrama")
-else:
+except:
     print("Por favor, introduza caracteres válidos.")

@@ -111,8 +111,8 @@ def modificar_datos(indice:int, lista:list, nova_nota:float):
         raise ValueError
     if not 0 <= nova_nota <= 10:
         raise ValueError
-    if indice < len(lista):
-        lista[indice]["nota"] = nova_nota
+
+    lista[indice]["nota"] = nova_nota
         
 
 def ver_aprobados(lista: list):
