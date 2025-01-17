@@ -8,9 +8,13 @@ public class exer8 {
         int num = scanner.nextInt();
         scanner.close();
 
+        int raiz = 0;
 
+        while ((raiz) * (raiz) <= num) {
+            raiz++;
+        }
 
-
+        System.out.println(raiz - 1);
         
     }
 
