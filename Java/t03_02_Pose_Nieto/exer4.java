@@ -24,7 +24,7 @@ public class exer4 {
         }
 
         String opcion;
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         do {
             System.out.println("a) Media dun alumno/a");
@@ -38,27 +38,35 @@ public class exer4 {
                     System.out.print("Introduce o número do alumno para calcular a media: ");
                     int alumno = scanner.nextInt();
                     scanner.nextLine();
-
-                    int suma = 0;
-                    for (int m = 0; m < matriz[alumno].length; m++) {
-                        suma += matriz[alumno][m];
+                    if (alumno < estudiantes && alumno >= 0) {
+                        int suma = 0;
+                        for (int m = 0; m < matriz[alumno].length; m++) {
+                            suma += matriz[alumno][m];
+                        }
+                        int media = suma / modulos;
+                        System.out.println("Media: " + media);
                     }
-                    int media = suma / modulos;
-                    System.out.println("Media: " + media);
+                    else{
+                        System.out.println("Introduzca un valor válido");
+                    }
                     break;
                 case "b":
                     System.out.print("Introduce o módulo para calcular o porcentaxe de aprobados: ");
                     int modulo = scanner.nextInt();
                     scanner.nextLine();
-
-                    int aprobados = 0;
-                    for (int e = 0; e < estudiantes; e++) {
-                        if (matriz[e][modulo] >= 5) {
-                            aprobados++;
+                    if (modulo < modulos && modulo >= 0) {
+                        int aprobados = 0;
+                        for (int e = 0; e < estudiantes; e++) {
+                            if (matriz[e][modulo] >= 5) {
+                                aprobados++;
+                            }
                         }
+                        double porcentaje = (aprobados * 100.0) / estudiantes;
+                        System.out.println("Porcentaxe de aprobados :" + porcentaje + "%");   
                     }
-                    double porcentaje = (aprobados * 100.0) / estudiantes;
-                    System.out.println("Porcentaxe de aprobados :" + porcentaje + "%");
+                    else{
+                        System.out.println("Introduzca un valor válido");
+                    }
                     break;
                 case "c":
                     System.out.println("------> Saíndo");
