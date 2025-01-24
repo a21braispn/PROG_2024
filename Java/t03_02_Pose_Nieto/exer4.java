@@ -1,5 +1,3 @@
-package exer4;
-
 import java.util.Scanner;
 
 public class exer4 {
@@ -18,40 +16,59 @@ public class exer4 {
         // Inicializamos a matriz
         int[][] matriz = new int[estudiantes][modulos];
 
-        for(int e=0; e< matriz.length; e++){
-
-            for(int m=0; m< matriz[e].length; m++){
+        for (int e = 0; e < matriz.length; e++) {
+            for (int m = 0; m < matriz[e].length; m++) {
                 System.out.print("Introduce a nota do estudiante " + e + " no modulo " + m + " : ");
-                int valor = scanner.nextInt();
-                matriz[e][m] = valor;
+                matriz[e][m] = scanner.nextInt();
             }
         }
-       String opcion;
+
+        String opcion;
+        scanner.nextLine(); 
+
         do {
             System.out.println("a) Media dun alumno/a");
             System.out.println("b) Porcentaxe de aprobados");
             System.out.println("c) Salir");
             System.out.print("Selecciona unha opción: ");
             opcion = scanner.nextLine();
+
             switch (opcion) {
                 case "a":
-                    System.out.print("Introduce o alumno a facer a media: ");
+                    System.out.print("Introduce o número do alumno para calcular a media: ");
                     int alumno = scanner.nextInt();
-                    for(int m=0; m < matriz[alumno].length; m++){
-                        sumaFilas[m] = sumaFilas[m] + matriz[e][m];
+                    scanner.nextLine();
+
+                    int suma = 0;
+                    for (int m = 0; m < matriz[alumno].length; m++) {
+                        suma += matriz[alumno][m];
                     }
+                    int media = suma / modulos;
+                    System.out.println("Media: " + media);
                     break;
                 case "b":
-                    System.out.print("Introduce o módulo do que se fará a media: ");
+                    System.out.print("Introduce o módulo para calcular o porcentaxe de aprobados: ");
+                    int modulo = scanner.nextInt();
+                    scanner.nextLine();
+
+                    int aprobados = 0;
+                    for (int e = 0; e < estudiantes; e++) {
+                        if (matriz[e][modulo] >= 5) {
+                            aprobados++;
+                        }
+                    }
+                    double porcentaje = (aprobados * 100.0) / estudiantes;
+                    System.out.println("Porcentaxe de aprobados :" + porcentaje + "%");
                     break;
                 case "c":
                     System.out.println("------> Saíndo");
                     break;
                 default:
-                    System.out.println("Opción no válida. Por favor, intenta de nuevo.");
-            }   
+                    System.out.println("Opción no válida. Por favor, intenta de novo.");
+            }
+
             System.out.println();
-        }while (opcion != "c");
+        } while (!opcion.equals("c"));
 
         scanner.close();
     }
