@@ -6,6 +6,7 @@ public class exer1 {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Numero con al menos 2 cifras diferentes: ");
         int numero = scanner.nextInt();
+
         if (esRepdigit(numero) != true) {
             int iteracions = 0;
             int restas = numero;
@@ -50,4 +51,5 @@ public class exer1 {
         }
         return novon;
     }
+
 }
