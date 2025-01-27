@@ -17,7 +17,7 @@ public class exer4 {
         int[][] matriz = new int[estudiantes][modulos];
 
         for (int e = 0; e < matriz.length; e++) {
-            for (int m = 0; m < matriz[e].length; m++) {
+            for (int m = 0; m < modulos; m++) {
                 System.out.print("Introduce a nota do estudiante " + e + " no modulo " + m + " : ");
                 matriz[e][m] = scanner.nextInt();
             }
@@ -65,7 +65,7 @@ public class exer4 {
                         System.out.println("Porcentaxe de aprobados :" + porcentaje + "%");   
                     }
                     else{
-                        System.out.println("Introduzca un valor válido");
+                        System.out.print("Error: Introduzca un valor válido");
                     }
                     break;
                 case "c":

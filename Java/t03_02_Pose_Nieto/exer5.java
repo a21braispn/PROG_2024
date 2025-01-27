@@ -22,7 +22,8 @@ public class exer5 {
                         ganador = comprobarGanador(matriz, xogador);
                         if (!ganador && xogador == 1) {
                             xogador = 2;
-                        } else {
+                        } 
+                        else if(!ganador){
                             xogador = 1;
                         }
                     } else {
