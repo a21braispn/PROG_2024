@@ -50,5 +50,4 @@ public class exer1 {
         }
         return novon;
     }
-
 }
